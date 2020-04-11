@@ -1,9 +1,14 @@
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend
 spec:
-  replicas: 1
+  replicas: 5
+  selector:
+    matchLabels:
+      app: demo
+      tier: backend
+      track: stable
   template:
     metadata:
       labels:
@@ -16,9 +21,9 @@ spec:
           image: "achalise/demo-backend"
           ports:
           - containerPort: 8080
-          env:
-            - name: MONGO_URI
-              value: mongo-service
+          envFrom:
+            - configMapRef:
+                name: backend-config
 ---
 apiVersion: v1
 kind: Service
@@ -31,5 +36,6 @@ spec:
   selector:
     app: demo
     tier: backend
+  type: ClusterIP
 
 

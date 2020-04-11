@@ -1,9 +1,16 @@
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend
+  labels:
+    app: demo
+    tier: frontend
+    track: stable
 spec:
-  replicas: 1
+  replicas: 2
+  selector:
+    matchLabels:
+      app: demo
   template:
     metadata:
       labels:
@@ -15,7 +22,7 @@ spec:
         - name: nginx
           image: "achalise/demo-frontend"
           ports:
-          - containerPort: 80
+            - containerPort: 80
 ---
 apiVersion: v1
 kind: Service
