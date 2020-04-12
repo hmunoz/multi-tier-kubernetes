@@ -1,3 +1,6 @@
+# https://dzone.com/articles/quick-guide-to-microservices-with-kubernetes-sprin  other links
+# https://github.com/only2dhir/spring-cloud-feign-example
+
 # multi-tier-kubernetes
 Angular front end on nginx, SpringBoot APIs and MongoDB
 
